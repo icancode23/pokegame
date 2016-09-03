@@ -212,6 +212,7 @@ def description(request,pokemon_id,pokemon_name):
 def game(request):
 	pokemon_arr = Pokedex.objects.all()
 	
+	
 	pokemon = pokemon_arr[0]
 	random_number1 = randint(0,len(pokemon_arr)-1)
 	random_number2 = randint(0,len(pokemon_arr)-1)

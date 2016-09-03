@@ -36,12 +36,23 @@
 
 {% block content %}
 
-<h3>What's the name of this pokemon ?</h3>
+<h3>Whats the name of this pokemon ?</h3>
 
 <img src='{{pokemon.pokemon_image}}'>
 
 
-<p>{{pokemon_names}}</p>
+<!--<p>{{pokemon_names}}</p> -->
+<div>
+{% for item in pokemon_names %}
+	<input type='button' value='{{item}}' onclick='scorecheck(this)'>
+</input>
+{% endfor %}
+
+<div>
+	<h1 style="font-size:1000%;" id='ha'>0</h1>
+	<input type='button' value='start new' onclick='reset()'>
+</div>
+	</div>
 
 
 
@@ -50,8 +61,54 @@
 {% block scripts %}
 
 	<script type="text/javascript">
+	var iner=document.getElementById('ha').innerHTML
+	if(iner=='0')
+	{
+		//alert("hey");
+	}
+var scorestore = localStorage.getItem("someVarName");
+	var prevscore=parseInt(iner);
+	function reset()
+	{
+		localStorage.setItem("someVarName", '0');
+		document.location.reload();
+	}
+	function scorecheck(object)
+	{
+		var real='{{pokemon.pokemon_name}}';
+	    //alert(real);
+		var check=object.value;
+		//alert(check);
+	    //alert(prevscore);
+	    if (real==check)
+	    {
+	    	if (scorestore)
+	    	{
+	    	var newscore=parseInt(scorestore)+10;
+	    }
+	    else 
+	    {
+	    	var newscore=10;
+	    }
+	    	//alert(newscore);
+	    	//document.getElementById('ha').innerHTML=newscore;
+	    	var someVarNami = newscore;
+localStorage.setItem("someVarName", someVarNami);
+            document.location.reload();
+
+	    }
+	    else 
+	    	document.location.reload()
+
+	}
 		
 		$(document).ready(function(){
+			var someVarName = localStorage.getItem("someVarName");
+			//alert(someVarName);
+			if(someVarName)
+			{
+				document.getElementById('ha').innerHTML=someVarName;
+			}
 
 		   
 		   
